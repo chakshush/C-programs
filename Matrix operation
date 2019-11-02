@@ -1,0 +1,113 @@
+#include <stdio.h>
+void addmat(int a[100][100], int b[100][100], int m, int n, int p, int q)
+{
+        int i, j;
+        if(m==p && n==q)
+        {
+                printf("\nThe sum is:\n");
+                for(i=0; i<m; i++)
+                {
+                        for(j=0; j<n; j++)
+                        {
+                                printf("%d ", (a[i][j]+b[i][j]));
+                        }
+                        printf("\n");
+                }
+        }
+        else
+        {
+                printf("\nThe matrices cannot be added! ");
+        }
+}
+void submat(int a[100][100], int b[100][100], int m, int n, int p, int q)
+{
+        int i, j;
+        if(m==p && n==q)
+        {
+                printf("\nThe difference is:\n");
+                for(i=0; i<m; i++)
+                {
+                        for(j=0; j<n; j++)
+                        {
+                                printf("%d ", (a[i][j]-b[i][j]));
+                        }
+                        printf("\n");
+                }
+        }
+        else
+        {
+                printf("\nThe matrices cannot be subtracted! ");
+        }
+}
+void mulmat(int a[100][100], int b[100][100], int m, int n, int p, int q)
+{
+        int i, j, k;
+        if(n==p)
+        {       int c[100][100];
+                printf("\nThe product is:\n");
+                for(i=0; i<m; i++)
+                {
+                        for(j=0; j<q; j++)
+                        {
+                                c[i][j]=0;
+                                for(k=0; k<p; k++)
+                                {
+                                        c[i][j]+=a[i][k]+b[k][j];
+                                }
+                                printf("%d ", c[i][j]);
+                        }
+                        printf("\n");
+                }
+        }
+        else
+        {
+                printf("\nThe matrices cannot be multiplied! ");
+        }
+}
+
+int main()
+{
+        int ch;
+        int i, j;
+        int a[100][100], b[100][100];
+        int m, n, p, q;
+        printf("\nWhat operation on matrices would you like to do?\n1. Add\n2. Subtract\n3. Multiply\nYour choice: ");
+        scanf("%d", &ch);
+        printf("\nEnter the number of rows in first matrix: ");
+        scanf("%d", &m);
+        printf("\nEnter the number of columns in first matrix: ");
+        scanf("%d", &n);
+        printf("\nEnter the number of rows in second matrix: ");
+        scanf("%d", &p);
+        printf("\nEnter the number of columns in first matrix: ");
+        scanf("%d", &q);
+        printf("\nEnter the elements in the first matrix: ");
+        for(i=0; i<m; i++)
+        {
+                for(j=0; j<n; j++)
+                {
+                        scanf("%d", &a[i][j]);
+                }
+        }
+        printf("\nEnter the elements in the second matrix: ");
+        for(i=0; i<p; i++)
+        {
+                for(j=0; j<q; j++)
+                {
+                        scanf("%d", &b[i][j]);
+                }
+        }
+        switch (ch)
+        {
+                case 1: addmat(a,b,m,n,p,q);
+                        break;
+                case 2: submat(a,b,m,n,p,q);
+                        break;
+                case 3: mulmat(a,b,m,n,p,q);
+                        break;
+                default: printf("\nInvalid choice. Exiting. ");
+        }
+
+    return 0;
+
+}
